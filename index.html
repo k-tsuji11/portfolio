@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="utf-8" />
+    <title>Portfolio</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@700&display=swap');
+
+        
+        body {
+            background-image: url('https://images.pexels.com/photos/19670/pexels-photo.jpg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            background-color: #f0f8ff;
+            margin: 0;
+            font-family: 'M PLUS Rounded 1c', sans-serif;
+            color: #333;
+        }
+
+        
+        h1 {
+            font-size: 4rem;
+            font-weight: 700;
+            color: #000;
+            background-color: rgba(11, 32, 152, 0.5);
+            display: inline-block;
+            padding: 0.25em 0.5em;
+            border-radius: 15px;
+            margin-bottom: 0.5em;
+        }
+
+        h2 {
+            font-size: 1.2rem; 
+        }
+
+        h3 {
+            font-size: 3rem;
+            margin: 0;
+        }
+
+        h4 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            background-color: transparent;
+            border: 3px solid rgba(11, 32, 152, 0.5);
+            border-radius: 15px;
+            margin-left: 10%;
+            display: inline-block;
+            padding: 0.5em 1em;
+        }
+
+        h5 {
+            font-size: 2rem;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        p {
+            margin: 0;
+        }
+
+        a {
+            font-size: 1.5rem;
+            display: block;
+            text-align: center;
+            margin-top: 15px;
+            color: #0056b3;
+        }
+
+        hr {
+            border: 0;
+            height: 2px;
+            background-color: rgba(11, 32, 152, 0.5);
+            width: 80%;
+            margin: 60px auto; 
+        }
+
+        
+        .header-container {
+            text-align: center;
+            padding-top: 40px;
+        }
+
+        
+        .skills-container {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            width: 80%;
+            margin: 30px auto 0;
+            flex-wrap: wrap; 
+        }
+
+        .skill-item {
+            text-align: center;
+            width: 250px;
+        }
+
+        .skill-logo {
+            display: block;
+            width: 80px;
+            height: 80px;
+            object-fit: contain;
+            margin: 20px auto 0;
+        }
+
+        .skill-item p {
+            font-size: 1rem;
+            margin-top: 10px;
+        }
+
+        
+        .project-block {
+            text-align: center;
+            margin-bottom: 80px; 
+        }
+
+        
+        .game-img {
+            display: block;
+            width: 90%;          
+            max-width: 700px;     
+            margin: 20px auto;
+            border: 1px solid #ccc;
+        }
+
+        
+        .gallery-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 30px;
+            flex-wrap: wrap; 
+        }
+
+        .gallery-img {
+            width: 300px;
+            max-width: 90%; 
+            border: 1px solid #ccc;
+            object-fit: cover;
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <div class="header-container">
+        <h1>Portfolio</h1>
+        <h3>辻奏音</h3>
+        <h2>大阪公立大学工業高等専門学校&nbsp;&nbsp; 2年&nbsp;&nbsp; 知能情報コース所属</h2>
+    </div>
+    <hr>
+
+    <h4>skill</h4>
+    <div class="skills-container">
+        <div class="skill-item">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Python-logo-notext.svg/1024px-Python-logo-notext.svg.png" alt="Python ロゴ" class="skill-logo">
+            <h5>Python</h5>
+            <p>授業で習った程度</p>
+        </div> 
+        
+        <div class="skill-item">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/8/87/Arduino_Logo.svg" alt="Arduino-logo" class="skill-logo">
+            <h5>Arduino</h5>
+            <p>授業で習った程度</p>
+        </div>
+        
+        <div class="skill-item">
+            <img src="https://www.w3.org/html/logo/downloads/HTML5_Logo_128.png" alt="html-logo" class="skill-logo">
+            <h5>HTML</h5> 
+            <p>授業で習った程度</p>
+        </div> 
+        <div class="skill-item">
+            <img src="https://www.digitalelectronicsdeeds.com/favicon.ico" alt="Deeds-DCS" class="skill-logo">
+            <h5>Deeds-DCS</h5> 
+            <p>授業で習った程度</p>
+        </div> 
+    </div> 
+    <hr> 
+
+    <h4>制作物</h4>
+
+    <div class="project-block">
+        <h5>イライラ数当てゲーム</h5>
+        <img src="game.png" alt="ゲームの画面" class="game-img">
+        <a href="https://colab.research.google.com/drive/18l610m2k5bcN8DUekdIZZmG2XgcH-Uof?usp=sharing">こちら</a>
+    </div>
+
+    <div class="project-block">
+        <h5>お掃除ロボット</h5>
+        <p>高専祭で展示したお掃除ロボットです。</p>
+
+        <div class="gallery-container">
+            <img src="robo.jpg" alt="ルンバの外見" class="gallery-img">
+            <img src="circuit.jpg" alt="回路の外見" class="gallery-img">
+            <img src="swich.jpg" alt="スイッチの外見" class="gallery-img">
+        </div>
+    </div>
+
+    <hr>
+
+</body>
+</html>
