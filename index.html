@@ -8,7 +8,6 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@700&display=swap');
 
-        /* === スムーズスクロールを追加 === */
         html {
             scroll-behavior: smooth;
         }
@@ -21,8 +20,11 @@
             background-repeat: no-repeat;
             background-color: #f0f8ff;
             margin: 0;
-            font-family: 'M PLUS Rounded 1c', sans-serif;
+            font-family: 'M PLUS+Rounded 1c', sans-serif;
             color: #333;
+            /* === 追加 === */
+            overflow-x: hidden; /* 雪が画面からはみ出さないように */
+            /* === 追加ここまで === */
         }
 
         h1 {
@@ -44,7 +46,7 @@
             font-size: 3rem;
             margin: 0;
         }
-
+        
         h4 {
             font-size: 2.2rem;
             font-weight: 700;
@@ -54,7 +56,6 @@
             margin-left: 10%;
             display: inline-block;
             padding: 0.5em 1em;
-            /* === アンカーリンクの飛び先調整 === */
             scroll-margin-top: 20px; 
         }
 
@@ -90,6 +91,27 @@
             padding-top: 40px;
         }
 
+        .about-me {
+            display: none; /* ---★「白いしかく」を非表示にするため追加★--- */
+            width: 80%;
+            max-width: 800px;
+            margin: 0 auto 60px;
+            padding: 30px;
+            background-color: rgba(255, 255, 255, 0.85);
+            border-radius: 15px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        .about-me h4 {
+            margin-left: 0;
+            margin-bottom: 20px;
+        }
+        .about-me p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            text-align: left;
+        }
+
         .skills-container {
             display: flex;
             justify-content: center;
@@ -102,6 +124,17 @@
         .skill-item {
             text-align: center;
             width: 250px;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 15px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            box-sizing: border-box;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .skill-item:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
         }
 
         .skill-logo {
@@ -122,12 +155,24 @@
             margin-bottom: 80px;
         }
 
+        .game-img,
+        .gallery-img {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .game-img:hover,
+        .gallery-img:hover {
+            transform: scale(1.03);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+
         .game-img {
             display: block;
             width: 90%;
             max-width: 700px;
             margin: 20px auto;
             border: 1px solid #ccc;
+            border-radius: 10px; 
         }
 
         .gallery-container {
@@ -143,13 +188,11 @@
             max-width: 90%;
             border: 1px solid #ccc;
             object-fit: cover;
+            border-radius: 10px; 
         }
 
-        /* === ここから追記 === */
-
-        /* --- ハンバーガーボタン --- */
         .hamburger-menu {
-            position: fixed; /* 画面に固定 */
+            position: fixed;
             top: 20px;
             right: 20px;
             width: 40px;
@@ -157,25 +200,20 @@
             background: none;
             border: none;
             cursor: pointer;
-            z-index: 1001; /* 他の要素より手前に表示 */
+            z-index: 1001;
             padding: 0;
             display: flex;
             flex-direction: column;
             justify-content: space-around;
         }
-
-        /* ハンバーガーの3本線 */
         .hamburger-menu span {
             display: block;
             width: 100%;
             height: 4px;
-            /* h1の背景色と合わせる */
             background-color: rgb(11, 32, 152); 
             border-radius: 2px;
             transition: all 0.3s ease-in-out;
         }
-
-        /* --- メニューが開いた時（is-active）のボタン（X印） --- */
         .hamburger-menu.is-active span:nth-child(1) {
             transform: translateY(13px) rotate(45deg);
         }
@@ -185,52 +223,143 @@
         .hamburger-menu.is-active span:nth-child(3) {
             transform: translateY(-13px) rotate(-45deg);
         }
-
-        /* --- ナビゲーションメニュー本体 --- */
         .nav-menu {
             position: fixed;
             top: 0;
-            right: -300px; /* 初期状態では画面外（右側）に隠す */
+            right: -300px;
             width: 250px;
-            height: 100vh; /* 画面の高さ100% */
-            background-color: rgba(255, 255, 255, 0.95); /* 少し透けた白 */
+            height: 100vh;
+            background-color: rgba(255, 255, 255, 0.95);
             box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
             z-index: 1000;
-            padding: 80px 20px 20px; /* ボタンと重ならないように上部を空ける */
+            padding: 80px 20px 20px;
             transition: right 0.3s ease-in-out;
             display: flex;
             flex-direction: column;
         }
-
-        /* メニューが開いた時（is-active）のスタイル */
         .nav-menu.is-active {
-            right: 0; /* 右側からスライドイン */
+            right: 0;
         }
-
-        /* --- メニュー内のリンク --- */
         .nav-menu a {
             font-size: 1.8rem;
             font-weight: 700;
-            /* h1の背景色と合わせる */
             color: rgb(11, 32, 152);
             text-decoration: none;
             padding: 15px 10px;
-            text-align: left; /* 元のaタグのスタイルを上書き */
-            margin-top: 0; /* 元のaタグのスタイルを上書き */
-            display: block; /* 元のaタグのスタイルを上書き */
+            text-align: left; 
+            margin-top: 0; 
+            display: block; 
         }
-
         .nav-menu a:hover {
             text-decoration: underline;
         }
 
-        /* === ここまで追記 === */
+        footer {
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+            color: #555;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            h3 {
+                font-size: 1.8rem;
+            }
+
+            h2 {
+                font-size: 1rem;
+                padding: 0 10px;
+            }
+
+            h4 {
+                font-size: 1.8rem;
+                margin-left: auto;
+                margin-right: auto;
+                display: block;
+                text-align: center;
+                width: 80%;
+            }
+
+            .header-container {
+                padding-top: 60px;
+            }
+
+
+            .skills-container {
+                width: 90%;
+                gap: 30px;
+            }
+
+            .skill-item {
+                width: 100%;
+                max-width: 300px;
+                margin: 0 auto;
+            }
+        }
+        
+        /* --- フェードインアニメーション --- */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .fade-in.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* === 追加 === */
+        /* --- 雪のアニメーション --- */
+        /* 雪の粒を包むコンテナ */
+        .snow-container {
+            position: fixed; /* 画面に固定 */
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none; /* クリックイベントを透過させる */
+            z-index: 999; /* 他のコンテンツの下に表示 */
+            overflow: hidden; /* 雪がはみ出さないように */
+        }
+
+        /* 個々の雪の粒 */
+        .snowflake {
+            position: absolute;
+            background-color: white; /* 雪の色 */
+            border-radius: 50%; /* 丸い形 */
+            opacity: 0.8; /* 少し透明に */
+            animation: fall linear infinite; /* 降るアニメーションを適用 */
+        }
+
+        /* 雪が降るアニメーション */
+        @keyframes fall {
+            0% {
+                transform: translateY(-100px) translateX(0); /* 上から開始 */
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.8;
+            }
+            90% {
+                opacity: 0.8;
+            }
+            100% {
+                transform: translateY(100vh) translateX(var(--flake-sway)); /* 画面下まで移動、横揺れを適用 */
+                opacity: 0;
+            }
+        }
+        /* === 追加ここまで === */
 
     </style>
 </head>
 
 <body>
-
+    <div class="snow-container"></div>
     <button class="hamburger-menu" aria-label="Toggle navigation">
         <span></span>
         <span></span>
@@ -238,18 +367,24 @@
     </button>
 
     <nav class="nav-menu">
+        <a href="#about">About</a>
         <a href="#skill">Skill</a>
         <a href="#seisakubutsu">制作物</a>
     </nav>
+
     <div class="header-container">
         <h1>Portfolio</h1>
         <h3>辻奏音</h3>
         <h2>大阪公立大学工業高等専門学校&nbsp;&nbsp; 2年&nbsp;&nbsp; 知能情報コース所属</h2>
     </div>
-    <hr>
 
-    <h4 id="skill">skill</h4>
-    <div class="skills-container">
+    <section class="about-me fade-in" id="about">
+        
+    </section>
+
+
+    <h4 id="skill" class="fade-in">skill</h4>
+    <div class="skills-container fade-in">
         <div class="skill-item">
             <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Python-logo-notext.svg/1024px-Python-logo-notext.svg.png" alt="Python ロゴ" class="skill-logo">
             <h5>Python</h5>
@@ -275,15 +410,15 @@
     </div>
     <hr>
 
-    <h4 id="seisakubutsu">制作物</h4>
+    <h4 id="seisakubutsu" class="fade-in">制作物</h4>
 
-    <div class="project-block">
+    <div class="project-block fade-in">
         <h5>イライラ数当てゲーム</h5>
         <img src="game.png" alt="ゲームの画面" class="game-img">
         <a href="https://colab.research.google.com/drive/18l610m2k5bcN8DUekdIZZmG2XgcH-Uof?usp=sharing">こちら</a>
     </div>
 
-    <div class="project-block">
+    <div class="project-block fade-in">
         <h5>お掃除ロボット</h5>
         <p>高専祭で展示したお掃除ロボットです。</p>
 
@@ -296,27 +431,78 @@
 
     <hr>
 
+    <footer>
+        <small>&copy; 2025 Kanon Tsuji. All Rights Reserved.</small>
+    </footer>
+
 
     <script>
-        // ハンバーガーボタンとナビゲーションメニューの要素を取得
+        // --- ハンバーガーメニューの処理 ---
         const hamburger = document.querySelector('.hamburger-menu');
         const navMenu = document.querySelector('.nav-menu');
 
-        // ハンバーガーボタンがクリックされた時の処理
         hamburger.addEventListener('click', () => {
-            // 'is-active' クラスをボタンとメニューに付け外しする
             hamburger.classList.toggle('is-active');
             navMenu.classList.toggle('is-active');
         });
 
-        // メニュー内のリンクがクリックされた時の処理
         document.querySelectorAll('.nav-menu a').forEach(link => {
             link.addEventListener('click', () => {
-                // メニューを閉じる
                 hamburger.classList.remove('is-active');
                 navMenu.classList.remove('is-active');
             });
         });
+
+
+        // --- スクロールでフェードインさせる処理 ---
+        const fadeElements = document.querySelectorAll('.fade-in');
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    observer.unobserve(entry.target); 
+                }
+            });
+        }, {
+            threshold: 0.1 
+        });
+
+        fadeElements.forEach(el => {
+            observer.observe(el);
+        });
+
+        // === 追加 ===
+        // --- 雪のアニメーションを生成する処理 ---
+        const snowContainer = document.querySelector('.snow-container');
+        const numberOfSnowflakes = 100; // 雪の粒の数
+
+        for (let i = 0; i < numberOfSnowflakes; i++) {
+            const snowflake = document.createElement('div');
+            snowflake.classList.add('snowflake');
+
+            // ランダムなサイズ (2px から 8px)
+            const size = Math.random() * 6 + 2; 
+            snowflake.style.width = `${size}px`;
+            snowflake.style.height = `${size}px`;
+
+            // ランダムな開始位置 (画面の左端から右端)
+            snowflake.style.left = `${Math.random() * 100}vw`;
+
+            // ランダムなアニメーション時間 (5秒から15秒)
+            const animationDuration = Math.random() * 10 + 5; 
+            snowflake.style.animationDuration = `${animationDuration}s`;
+
+            // アニメーションの開始をずらす (雪が一斉に降らないように)
+            snowflake.style.animationDelay = `${Math.random() * animationDuration}s`;
+
+            // 雪の横揺れを表現するためのカスタムプロパティ
+            const swayAmount = Math.random() * 50 - 25; // -25px から 25px
+            snowflake.style.setProperty('--flake-sway', `${swayAmount}px`);
+
+
+            snowContainer.appendChild(snowflake);
+        }
     </script>
     </body>
 </html>
